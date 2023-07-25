@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Calander from "./components/Calander";
+import { DateProvider } from "./context/DateProvider";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [holidays, setHolidays] = useState([]);
+
+  // Fetch the file and parse it
+  useEffect(() => {
+    const fetchFileAndRead = async () => {
+      const filePath = "holidays.txt";
+
+      try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+          throw new Error("Failed to fetch the file.");
+        }
+
+        const text = await response.text();
+
+        const parsedHolidays = text.split("\n").map((line) => {
+          const [date, repeat] = line.split(",");
+          return { date, repeat };
+        });
+
+        setHolidays(parsedHolidays);
+      } catch (error) {
+        console.error("Error reading the file:", error);
+      }
+    };
+
+    fetchFileAndRead();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="background">
+        <DateProvider>
+          <Calander holidays={holidays} />
+        </DateProvider>
+      </div>
     </div>
   );
 }

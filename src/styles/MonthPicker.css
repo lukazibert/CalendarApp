@@ -1,0 +1,23 @@
+select {
+    /* appearance: none; */
+    border: none;
+    margin-left: 50px;
+    font-size: 26px; 
+    border-top-color: transparent;
+}
+
+/* Remove border on active/focused select */
+select:focus {
+  outline: none;
+}
+
+/* Chrome/Safari */  
+select::-moz-focus-inner {
+  border: 0;
+}
+
+/* Firefox */
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
