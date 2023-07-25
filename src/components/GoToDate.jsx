@@ -33,7 +33,7 @@ export default function DatePicker() {
       <input
         type="date"
         className="form-control"
-        value={`${year}-${month}-${day}`}
+        placeholder={`${year}-${month}-${day}`}
         onChange={(e) => {
             const [year, month, day] = e.target.value.split('-');
             handleChange(year, month, day);
