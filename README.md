@@ -22,7 +22,7 @@ Add new lines to add more holidays. Restart app to see new holidays.
 git clone https://github.com/lukazibert/CalendarApp.git
 ```
 ```
-cd calendar-app
+cd CalendarApp
 ```
 
 ```
